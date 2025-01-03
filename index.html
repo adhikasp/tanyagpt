@@ -7,151 +7,7 @@
     <link rel="icon" type="image/png" href="img/icon_resized.png">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="ca710274-7baa-4bc1-bee5-cf525c5feb39"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --text-color: #1f2937;
-            --light-bg: #f3f4f6;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: var(--text-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .button-primary {
-            background-color: white;
-            color: var(--primary-color);
-        }
-
-        .button-secondary {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid white;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-        }
-
-        .features {
-            padding: 80px 0;
-            background-color: var(--light-bg);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .hero-logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            display: block;
-        }
-
-        .demo-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin: 40px auto 0;
-            display: block;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .button i {
-            margin-right: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <section class="hero">
@@ -159,6 +15,7 @@
             <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
             <h1>TanyaGPT</h1>
             <p>Asisten AI pribadi dalam genggaman Anda. Tanya apa saja, kapan saja.</p>
+            <p>Gak perlu download aplikasi tambahan, langsung mulai chat dari sini.</p>
             <div class="cta-buttons">
                 <a href="https://t.me/TanyaGPTBOT" class="button button-primary" data-umami-event="click-telegram">
                     <i class="fab fa-telegram"></i> Chat di Telegram
@@ -208,5 +65,15 @@
             </div>
         </div>
     </section>
+
+    <footer style="background-color: var(--light-bg); padding: 40px 0; margin-top: 40px;">
+        <div class="container" style="text-align: center;">
+            <p style="margin-bottom: 20px;">© 2024 TanyaGPT. Semua hak dilindungi.</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="terms.html" style="color: var(--primary-color); text-decoration: none;">Syarat dan Ketentuan</a>
+                <a href="privacy.html" style="color: var(--primary-color); text-decoration: none;">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html> 
