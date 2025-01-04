@@ -571,3 +571,25 @@ footer p {
         padding: 0 20px;
     }
 } 
+
+/* Add these styles in the Advanced Usage section */
+.model-options {
+    margin-top: 15px;
+}
+
+.model-option {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.model-option code {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.model-description {
+    color: #666;
+    font-size: 0.9em;
+    margin-left: 8px;
+    margin-top: 4px;
+} 
