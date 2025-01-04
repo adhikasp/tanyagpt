@@ -70,7 +70,7 @@
       "shopping": {
         "title": "Asisten Belanja",
         "description": "Belanja di Tokopedia atau Shopee dengan lebih aman dan hemat. TanyaGPT membantu membandingkan harga dan mengecek review penjual."
-      }
+      }      
     },
     "advancedUsage": {
       "title": "Penggunaan Lanjutan",
@@ -226,12 +226,12 @@
         "title": "Political News Analysis",
         "description": "Stay updated with the latest political news directly from trusted sources. TanyaGPT helps analyze and summarize information to avoid hoaxes.",
         "alt1": "Demo of political news analysis on Telegram",
-        "alt2": "Demo of advanced political news analysis on Telegram",
-        "receipt": {
-          "title": "Sales Receipt Digitization",
-          "description": "Save and manage your receipts easily. Just take a photo of the receipt and TanyaGPT will convert it into neat digital records.",
-          "alt1": "Demo of sales receipt digitization on Telegram"
-        }
+        "alt2": "Demo of advanced political news analysis on Telegram"
+      },
+      "receipt": {
+        "title": "Sales Receipt Digitization",
+        "description": "Save and manage your receipts easily. Just take a photo of the receipt and TanyaGPT will convert it into neat digital records.",
+        "alt1": "Demo of sales receipt digitization on Telegram"
       }
     },
     "features": {
