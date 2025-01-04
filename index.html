@@ -27,11 +27,90 @@
             color: inherit;
             text-decoration: none;
         }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            padding: 8px 12px;
+            margin: 0 4px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: #f5f5f5;
+        }
+
+        [data-lang] {
+            display: none;
+        }
+
+        [data-lang].active {
+            display: block;
+        }
     </style>
+    <script>
+        function getPreferredLanguage() {
+            // Check URL parameter first
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            if (langParam && ['id', 'en'].includes(langParam)) {
+                return langParam;
+            }
+
+            // Then check browser language
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('id')) {
+                return 'id';
+            }
+
+            // Default to English
+            return 'en';
+        }
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                // Remove active class from all elements
+                element.classList.remove('active');
+                // Hide all elements
+                element.style.display = 'none';
+                
+                // Show and add active class to elements matching current language
+                if (element.dataset.lang === lang) {
+                    element.classList.add('active');
+                    element.style.display = 'block';
+                }
+            });
+            
+            // Update URL without reloading
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+        }
+
+        // Initialize language on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(getPreferredLanguage());
+        });
+    </script>
 </head>
 <body>
+    <div class="language-switcher">
+        <button onclick="setLanguage('id')" class="lang-btn">🇮🇩 ID</button>
+        <button onclick="setLanguage('en')" class="lang-btn">🇬🇧 EN</button>
+    </div>
+
     <section class="hero" id="beranda">
-        <div class="container">
+        <div class="container" data-lang="id">
             <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
             <h1>TanyaGPT</h1>
             <p class="hero-subtitle">Asisten AI pribadi dalam genggaman Anda. Tanya apa saja, kapan saja.</p>
@@ -49,10 +128,29 @@
             </div>
             <img src="img/demo_telegram_tanya_jawab_search_web.png" alt="Demo percakapan dengan TanyaGPT" class="demo-image">
         </div>
+
+        <div class="container" data-lang="en">
+            <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
+            <h1>TanyaGPT</h1>
+            <p class="hero-subtitle">Your personal AI assistant at your fingertips. Ask anything, anytime.</p>
+            <p>No need to download additional apps, start chatting from your favorite messaging platform.</p>
+            <div class="cta-buttons">
+                <a href="https://t.me/TanyaGPTBOT" class="button button-primary" data-umami-event="click-telegram">
+                    <i class="fab fa-telegram"></i> Chat on Telegram
+                </a>
+                <a href="https://instagram.com/tanyagpt.id" class="button button-primary" data-umami-event="click-instagram">
+                    <i class="fab fa-instagram"></i> Chat on Instagram
+                </a>
+                <a href="https://wa.me/message/MDOILGVKZ5O3N1" class="button button-primary" data-umami-event="click-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+            <img src="img/demo_telegram_tanya_jawab_search_web.png" alt="Demo conversation with TanyaGPT" class="demo-image">
+        </div>
     </section>
 
     <section class="showcase" id="showcase">
-        <div class="container">
+        <div class="container" data-lang="id">
             <div class="section-title">
                 <h2><a href="#showcase" class="section-link">Contoh Penggunaan</a></h2>
                 <p>Lihat bagaimana TanyaGPT membantu pengguna dalam berbagai situasi</p>
@@ -80,10 +178,39 @@
                 </div>
             </div>
         </div>
+
+        <div class="container" data-lang="en">
+            <div class="section-title">
+                <h2><a href="#showcase" class="section-link">Usage Examples</a></h2>
+                <p>See how TanyaGPT helps users in various situations</p>
+            </div>
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <div class="showcase-images">
+                        <img src="img/demo_whatsapp_image_analysis_1.png" alt="Demo of image analysis on WhatsApp" class="showcase-image">
+                        <img src="img/demo_whatsapp_image_analysis_2.png" alt="Demo of advanced image analysis on WhatsApp" class="showcase-image">
+                    </div>
+                    <div class="showcase-description">
+                        <h3>Image Analysis on WhatsApp</h3>
+                        <p>Send any image and ask specific questions, TanyaGPT will help analyze and explain it</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <div class="showcase-images">
+                        <img src="img/demo_instagram_shopping_1.png" alt="Demo of shopping assistant on Instagram" class="showcase-image">
+                        <img src="img/demo_instagram_shopping_2.png" alt="Demo of product analysis on Instagram" class="showcase-image">
+                    </div>
+                    <div class="showcase-description">
+                        <h3>Shopping Assistant on Instagram</h3>
+                        <p>Compare products and get objective shopping recommendations with deep insights</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="features" id="fitur">
-        <div class="container">
+        <div class="container" data-lang="id">
             <div class="section-title">
                 <h2><a href="#fitur" class="section-link">Fitur Unggulan</a></h2>
                 <p>Asisten AI yang siap membantu berbagai kebutuhan Anda</p>
@@ -133,10 +260,61 @@
                 </div>
             </div>
         </div>
+
+        <div class="container" data-lang="en">
+            <div class="section-title">
+                <h2><a href="#fitur" class="section-link">Key Features</a></h2>
+                <p>An AI assistant ready to help with your various needs</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="Chat Companion">
+                    <h3><i class="fas fa-comments"></i> Chat Anytime</h3>
+                    <p>Need someone to talk to? TanyaGPT is ready to accompany you 24/7 with various interesting topics.</p>
+                </div>
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="General Help">
+                    <h3><i class="fas fa-tasks"></i> Help with Everything</h3>
+                    <p>From writing emails to homework help, TanyaGPT is ready to assist you with various daily tasks.</p>
+                </div>
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="Easy to Use">
+                    <h3><i class="fas fa-mobile-alt"></i> Easy to Use</h3>
+                    <p>Just chat like you're chatting with a friend. No additional apps needed, just use Telegram or WhatsApp.</p>
+                </div>
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="Image Analysis">
+                    <h3><i class="fas fa-image"></i> Image Analysis</h3>
+                    <p>Send any image and TanyaGPT will help analyze, explain, or answer questions about it.</p>
+                </div>
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="Web Search">
+                    <h3><i class="fas fa-search"></i> Web Search</h3>
+                    <p>TanyaGPT can search for current information on the internet to provide accurate and up-to-date answers.</p>
+                </div>
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="YouTube Analysis">
+                    <h3><i class="fab fa-youtube"></i> YouTube Video Analysis</h3>
+                    <p>Send a YouTube link and TanyaGPT will help summarize or answer questions based on the video content.</p>
+                </div>
+                <div class="feature-card"
+                    data-umami-event="hover-feature" 
+                    data-umami-event-feature="Shopping Assistant">
+                    <h3><i class="fas fa-shopping-cart"></i> Shopping Assistant</h3>
+                    <p>Shop on Tokopedia or Shopee more safely and economically. TanyaGPT helps compare prices and check seller reviews.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="advanced-usage" id="penggunaan">
-        <div class="container">
+        <div class="container" data-lang="id">
             <div class="section-title">
                 <h2><a href="#penggunaan" class="section-link">Penggunaan Lanjutan</a></h2>
                 <p>Optimalkan pengalaman Anda dengan perintah khusus</p>
@@ -173,10 +351,48 @@
                 </div>
             </div>
         </div>
+
+        <div class="container" data-lang="en">
+            <div class="section-title">
+                <h2><a href="#penggunaan" class="section-link">Advanced Usage</a></h2>
+                <p>Optimize your experience with special commands</p>
+            </div>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <h3><i class="fas fa-robot"></i> Change AI Model</h3>
+                    <p class="command-syntax">/model [model_name]</p>
+                    <p>Choose which AI model you want to use:</p>
+                    <div class="model-options">
+                        <div class="model-option">
+                            <code>openai/gpt-4o-mini</code>
+                            <p class="model-description">Fast versatile model for various needs</p>
+                        </div>
+                        <div class="model-option">
+                            <code>google/gemini-flash-1.5-8b</code>
+                            <p class="model-description">Suitable for very long conversations</p>
+                        </div>
+                        <div class="model-option">
+                            <code>deepseek/deepseek-chat</code>
+                            <p class="model-description">Smart assistant, but may have difficulty browsing the web</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="command-card">
+                    <h3><i class="fas fa-broom"></i> Clear History</h3>
+                    <p class="command-syntax">/clear</p>
+                    <p>Clear conversation history to start a new topic with fresh focus.</p>
+                </div>
+                <div class="command-card">
+                    <h3><i class="fas fa-headset"></i> Admin Support</h3>
+                    <p class="command-syntax">/admin [your_message]</p>
+                    <p>Connect with admin for help if you experience errors or have questions about the service</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="pricing" id="harga">
-        <div class="container">
+        <div class="container" data-lang="id">
             <div class="section-title">
                 <h2><a href="#harga" class="section-link">Harga</a></h2>
                 <p>Akses TanyaGPT dengan mudah dan terjangkau</p>
@@ -210,10 +426,45 @@
                 </div>
             </div>
         </div>
+
+        <div class="container" data-lang="en">
+            <div class="section-title">
+                <h2><a href="#harga" class="section-link">Pricing</a></h2>
+                <p>Access TanyaGPT easily and affordably</p>
+            </div>
+            <div class="pricing-content">
+                <div class="pricing-card"
+                    data-umami-event="hover-pricing" 
+                    data-umami-event-plan="Early Access"
+                    data-umami-event="click-pricing" 
+                    data-umami-event-plan="Early Access">
+                    <div class="pricing-header">
+                        <h3>Early Access</h3>
+                        <div class="price">FREE</div>
+                        <p class="price-subtitle">During testing period</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all basic features</li>
+                            <li><i class="fas fa-check"></i> Image analysis</li>
+                            <li><i class="fas fa-check"></i> Web search</li>
+                            <li><i class="fas fa-check"></i> YouTube video analysis</li>
+                            <li><i class="fas fa-info-circle"></i> Limited messages for fair usage</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <p>Need more intensive usage?</p>
+                        <a href="mailto:halo@tanyagpt.my.id" class="button button-outline">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="roadmap" id="roadmap">
-        <div class="container">
+        <div class="container" data-lang="id">
             <div class="section-title">
                 <h2><a href="#roadmap" class="section-link">Fitur Mendatang</a></h2>
                 <p>Kami terus mengembangkan TanyaGPT untuk memberikan pengalaman yang lebih baik</p>
@@ -291,10 +542,89 @@
                 </a>
             </div>
         </div>
+
+        <div class="container" data-lang="en">
+            <div class="section-title">
+                <h2><a href="#roadmap" class="section-link">Upcoming Features</a></h2>
+                <p>We're continuously developing TanyaGPT to provide a better experience</p>
+            </div>
+            <div class="roadmap-grid">
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Long-term Memory">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Long-term Memory</h3>
+                    <p>Your assistant will remember preferences and information about you, providing more personal interactions in every chat session.</p>
+                </div>
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Email Access">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Access</h3>
+                    <p>Read and manage important emails, bills, and other communications with the help of your assistant.</p>
+                </div>
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Voice Note">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Voice Notes</h3>
+                    <p>Send voice messages when you don't feel like typing, for a more natural chat experience.</p>
+                </div>
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Proactive Notifications">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Proactive Notifications</h3>
+                    <p>Your assistant will remind you of important things and proactively provide relevant information.</p>
+                </div>
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Social Media Access">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Social Media Access</h3>
+                    <p>Want to stay updated about family and friends without distraction and doom scrolling? TanyaGPT will help summarize important information for you.</p>
+                </div>
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Schedule Management">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Schedule Management</h3>
+                    <p>Calendar integration to help manage meeting schedules, reminders, and to-do lists more efficiently.</p>
+                </div>
+                <div class="roadmap-card"
+                    data-umami-event="hover-roadmap" 
+                    data-umami-event-feature="Document Assistant">
+                    <div class="roadmap-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Document Assistant</h3>
+                    <p>Upload and edit documents directly from chat. TanyaGPT will help write, edit, and format your documents.</p>
+                </div>
+            </div>
+            <div class="roadmap-cta">
+                <p>Want your favorite feature to be available soon?</p>
+                <p>Or have an idea for a feature not in the roadmap?</p>
+                <a href="mailto:halo@tanyagpt.my.id" class="button button-outline" data-umami-event="click-roadmap-cta">
+                    <i class="fas fa-envelope"></i> Contact Us
+                </a>
+            </div>
+        </div>
     </section>
 
     <section class="testimonials" id="testimonial">
-        <div class="container">
+        <div class="container" data-lang="id">
             <div class="section-title">
                 <h2><a href="#testimonial" class="section-link">Apa Kata Pengguna</a></h2>
                 <p>Pengalaman mereka menggunakan TanyaGPT</p>
@@ -317,15 +647,53 @@
                 </div>
             </div>
         </div>
+
+        <div class="container" data-lang="en">
+            <div class="section-title">
+                <h2><a href="#testimonial" class="section-link">User Testimonials</a></h2>
+                <p>Their experience using TanyaGPT</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"
+                    data-umami-event="hover-testimonial" 
+                    data-umami-event-author="Andy S."
+                    data-umami-event="click-testimonial">
+                    <p>"TanyaGPT has been very helpful in my daily work. The responses are quick and accurate!"</p>
+                    <p class="testimonial-author">- Andy S.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I love how TanyaGPT can help analyze images and videos. Such a useful feature!"</p>
+                    <p class="testimonial-author">- Bob R.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Simple and easy-to-use interface. Highly recommended for anyone who needs an AI assistant!"</p>
+                    <p class="testimonial-author">- Claire W.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <div class="container">
+        <div class="container" data-lang="id">
             <p>© 2024 TanyaGPT. Semua hak dilindungi.</p>
             <div class="footer-links">
                 <a href="terms.html">Syarat dan Ketentuan</a>
                 <a href="privacy.html">Kebijakan Privasi</a>
                 <a href="mailto:halo@tanyagpt.my.id">Hubungi Kami</a>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/tanyagpt.id" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/TanyaGPTBOT" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://wa.me/message/MDOILGVKZ5O3N1" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="container" data-lang="en">
+            <p>© 2024 TanyaGPT. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="terms.html">Terms and Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="mailto:halo@tanyagpt.my.id">Contact Us</a>
             </div>
             <div class="social-links">
                 <a href="https://instagram.com/tanyagpt.id" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
