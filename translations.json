@@ -32,7 +32,12 @@
         "title": "Analisis Berita Politik",
         "description": "Tetap update dengan berita politik terkini langsung dari sumber terpercaya. TanyaGPT membantu menganalisis dan merangkum informasi untuk menghindari hoaks.",
         "alt1": "Demo analisis berita politik di Telegram",
-        "alt2": "Demo analisis lanjutan berita politik di Telegram"
+        "alt2": "Demo analisis lanjutan berita politik di Telegram",
+        "receipt": {
+          "title": "Digitalisasi Struk Belanja",
+          "description": "Simpan dan kelola struk belanja Anda dengan mudah. Cukup foto struk dan TanyaGPT akan mengubahnya menjadi catatan digital yang rapi.",
+          "alt1": "Demo digitalisasi struk belanja di Telegram"
+        }
       }
     },
     "features": {
@@ -221,7 +226,12 @@
         "title": "Political News Analysis",
         "description": "Stay updated with the latest political news directly from trusted sources. TanyaGPT helps analyze and summarize information to avoid hoaxes.",
         "alt1": "Demo of political news analysis on Telegram",
-        "alt2": "Demo of advanced political news analysis on Telegram"
+        "alt2": "Demo of advanced political news analysis on Telegram",
+        "receipt": {
+          "title": "Sales Receipt Digitization",
+          "description": "Save and manage your receipts easily. Just take a photo of the receipt and TanyaGPT will convert it into neat digital records.",
+          "alt1": "Demo of sales receipt digitization on Telegram"
+        }
       }
     },
     "features": {
