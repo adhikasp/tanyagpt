@@ -8,9 +8,29 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="ca710274-7baa-4bc1-bee5-cf525c5feb39"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .section-link {
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .section-link:hover::after {
+            content: '#';
+            position: absolute;
+            margin-left: 8px;
+            color: #666;
+            font-size: 0.8em;
+        }
+        
+        .section-link:hover {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <section class="hero">
+    <section class="hero" id="beranda">
         <div class="container">
             <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
             <h1>TanyaGPT</h1>
@@ -31,10 +51,10 @@
         </div>
     </section>
 
-    <section class="features">
+    <section class="features" id="fitur">
         <div class="container">
             <div class="section-title">
-                <h2>Fitur Unggulan</h2>
+                <h2><a href="#fitur" class="section-link">Fitur Unggulan</a></h2>
                 <p>Asisten AI yang siap membantu berbagai kebutuhan Anda</p>
             </div>
             <div class="features-grid">
@@ -78,10 +98,10 @@
         </div>
     </section>
 
-    <section class="advanced-usage">
+    <section class="advanced-usage" id="penggunaan">
         <div class="container">
             <div class="section-title">
-                <h2>Penggunaan Lanjutan</h2>
+                <h2><a href="#penggunaan" class="section-link">Penggunaan Lanjutan</a></h2>
                 <p>Optimalkan pengalaman Anda dengan perintah khusus</p>
             </div>
             <div class="commands-grid">
@@ -118,10 +138,10 @@
         </div>
     </section>
 
-    <section class="pricing">
+    <section class="pricing" id="harga">
         <div class="container">
             <div class="section-title">
-                <h2>Harga</h2>
+                <h2><a href="#harga" class="section-link">Harga</a></h2>
                 <p>Akses TanyaGPT dengan mudah dan terjangkau</p>
             </div>
             <div class="pricing-content">
@@ -155,10 +175,10 @@
         </div>
     </section>
 
-    <section class="roadmap">
+    <section class="roadmap" id="roadmap">
         <div class="container">
             <div class="section-title">
-                <h2>Fitur Mendatang</h2>
+                <h2><a href="#roadmap" class="section-link">Fitur Mendatang</a></h2>
                 <p>Kami terus mengembangkan TanyaGPT untuk memberikan pengalaman yang lebih baik</p>
             </div>
             <div class="roadmap-grid">
@@ -245,10 +265,10 @@
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="testimonials" id="testimonial">
         <div class="container">
             <div class="section-title">
-                <h2>Apa Kata Pengguna</h2>
+                <h2><a href="#testimonial" class="section-link">Apa Kata Pengguna</a></h2>
                 <p>Pengalaman mereka menggunakan TanyaGPT</p>
             </div>
             <div class="testimonials-grid">
