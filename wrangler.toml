@@ -1,0 +1,13 @@
+name = "tanyagpt-worker"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[triggers]
+pages = [
+  { pattern = "*", zone_name = "tanyagpt.my.id" }
+]
+
+[env.production]
+routes = [
+  { pattern = "tanyagpt.my.id/*", zone_id = "your-zone-id" }
+] 

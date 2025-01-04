@@ -66,6 +66,12 @@
                 return langParam;
             }
 
+            // Check for Cloudflare detected language header
+            const cfDetectedLang = document.querySelector('meta[name="cf-detected-lang"]')?.content;
+            if (cfDetectedLang && ['id', 'en'].includes(cfDetectedLang)) {
+                return cfDetectedLang;
+            }
+
             // Then check browser language
             const browserLang = navigator.language || navigator.userLanguage;
             if (browserLang.startsWith('id')) {
