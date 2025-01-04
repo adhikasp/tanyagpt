@@ -1,0 +1,380 @@
+{
+  "id": {
+    "hero": {
+      "title": "TanyaGPT",
+      "subtitle": "Asisten AI Instan Anda: Dapatkan Jawaban dan Bantuan Seketika.",
+      "description": "Mulai Chat Langsung dari Telegram, Instagram, atau WhatsApp – Tanpa Perlu Download Aplikasi.",
+      "buttons": {
+        "telegram": "Chat di Telegram",
+        "instagram": "Chat di Instagram",
+        "whatsapp": "Chat di WhatsApp"
+      },
+      "demo": {
+        "alt": "Contoh interaksi dengan TanyaGPT"
+      }
+    },
+    "showcase": {
+      "title": "Lihat TanyaGPT Beraksi",
+      "subtitle": "Temukan bagaimana TanyaGPT membantu pengguna dalam tugas sehari-hari",
+      "imageAnalysis": {
+        "title": "Analisis Gambar Instan",
+        "description": "Kirim gambar apapun dan dapatkan penjelasan langsung di WhatsApp. Dari identifikasi objek hingga analisis dokumen.",
+        "alt1": "Demo analisis gambar di WhatsApp",
+        "alt2": "Demo analisis gambar lanjutan di WhatsApp"
+      },
+      "shopping": {
+        "title": "Asisten Belanja Pintar",
+        "description": "Belanja di Instagram? TanyaGPT membantu membandingkan produk, mengecek review, dan merekomendasikan pilihan terbaik untuk Anda.",
+        "alt1": "Demo asisten belanja di Instagram",
+        "alt2": "Demo analisis produk di Instagram"
+      },
+      "news": {
+        "title": "Analisis Berita Politik",
+        "description": "Tetap update dengan berita politik terkini langsung dari sumber terpercaya. TanyaGPT membantu menganalisis dan merangkum informasi untuk menghindari hoaks.",
+        "alt1": "Demo analisis berita politik di Telegram",
+        "alt2": "Demo analisis lanjutan berita politik di Telegram"
+      }
+    },
+    "features": {
+      "title": "Fitur Unggulan",
+      "subtitle": "Asisten AI Anda dilengkapi kemampuan untuk membantu Anda berhasil",
+      "chat": {
+        "title": "Selalu Siap 24/7",
+        "description": "Dapatkan bantuan instan kapan saja dengan berbagai topik. Asisten AI Anda siap saat Anda membutuhkan."
+      },
+      "versatile": {
+        "title": "Asisten Serba Bisa",
+        "description": "Dari menulis email hingga membantu PR, dapatkan bantuan ahli untuk tugas dan tantangan sehari-hari Anda."
+      },
+      "easyToUse": {
+        "title": "Mudah Digunakan",
+        "description": "Cukup chat seperti chatting dengan teman. Tidak perlu aplikasi tambahan, cukup gunakan Telegram atau WhatsApp."
+      },
+      "imageAnalysis": {
+        "title": "Analisis Gambar",
+        "description": "Kirim gambar dan TanyaGPT akan membantu menganalisis, menjelaskan, atau menjawab pertanyaan tentang gambar tersebut."
+      },
+      "webSearch": {
+        "title": "Penelusuran Web",
+        "description": "TanyaGPT dapat mencari informasi terkini di internet untuk memberikan jawaban yang akurat dan up-to-date."
+      },
+      "youtubeAnalysis": {
+        "title": "Analisis Video YouTube",
+        "description": "Kirim link YouTube dan TanyaGPT akan membantu merangkum atau menjawab pertanyaan berdasarkan konten video."
+      },
+      "shopping": {
+        "title": "Asisten Belanja",
+        "description": "Belanja di Tokopedia atau Shopee dengan lebih aman dan hemat. TanyaGPT membantu membandingkan harga dan mengecek review penjual."
+      }
+    },
+    "advancedUsage": {
+      "title": "Penggunaan Lanjutan",
+      "subtitle": "Optimalkan pengalaman Anda dengan perintah khusus",
+      "aiModel": {
+        "title": "Ganti Model AI",
+        "syntax": "/model [nama_model]",
+        "description": "Pilih model AI yang ingin Anda gunakan:",
+        "models": {
+          "gpt4": {
+            "name": "openai/gpt-4o-mini",
+            "description": "Model serba bisa yang cepat untuk berbagai kebutuhan"
+          },
+          "gemini": {
+            "name": "google/gemini-flash-1.5-8b",
+            "description": "Cocok untuk percakapan yang sangat panjang"
+          },
+          "deepseek": {
+            "name": "deepseek/deepseek-chat",
+            "description": "Asisten pintar, tapi mungkin ada kesulitan browsing web"
+          }
+        }
+      },
+      "clear": {
+        "title": "Bersihkan Riwayat",
+        "syntax": "/clear",
+        "description": "Hapus riwayat percakapan untuk memulai topik baru dengan fokus yang segar."
+      },
+      "admin": {
+        "title": "Bantuan Admin",
+        "syntax": "/admin [pesan_anda]",
+        "description": "Hubungkan dengan admin untuk bantuan jika mengalami error atau ada pertanyaan tentang layanan"
+      }
+    },
+    "pricing": {
+      "title": "Harga",
+      "subtitle": "Akses TanyaGPT dengan mudah dan terjangkau",
+      "earlyAccess": {
+        "title": "Early Access",
+        "price": "GRATIS",
+        "subtitle": "Selama masa testing",
+        "features": {
+          "basic": "Akses ke semua fitur dasar",
+          "imageAnalysis": "Analisis gambar",
+          "webSearch": "Penelusuran web",
+          "youtube": "Analisis video YouTube"
+        },
+        "limitations": {
+          "messages": "Dibatasi jumlah pesan untuk penggunaan yang wajar",
+          "pricing": "Harga dapat berubah sewaktu-waktu"
+        },
+        "footer": {
+          "question": "Butuh penggunaan lebih intensif?",
+          "contact": "Hubungi Kami"
+        }
+      },
+      "note": "Kok bisa gratis? Ini adalah exploration project dari author. Layanan produk dapat dihentikan atau dibatasi sewaktu-waktu."
+    },
+    "roadmap": {
+      "title": "Fitur Mendatang",
+      "subtitle": "Kami terus mengembangkan TanyaGPT untuk memberikan pengalaman yang lebih baik",
+      "memory": {
+        "title": "Memori Jangka Panjang",
+        "description": "Asisten Anda akan mengingat preferensi dan informasi tentang Anda, memberikan interaksi yang lebih personal di setiap sesi chat."
+      },
+      "email": {
+        "title": "Akses Email",
+        "description": "Baca dan kelola email penting, tagihan, dan komunikasi lainnya dengan bantuan asisten Anda."
+      },
+      "voiceNote": {
+        "title": "Voice Note",
+        "description": "Kirim pesan suara saat Anda sedang tidak ingin mengetik, untuk pengalaman chat yang lebih natural."
+      },
+      "notifications": {
+        "title": "Notifikasi Proaktif",
+        "description": "Asisten Anda akan mengingatkan hal-hal penting dan memberikan informasi yang relevan secara proaktif."
+      },
+      "socialMedia": {
+        "title": "Akses Media Sosial",
+        "description": "Ingin tetap update tentang keluarga dan teman tanpa terdistraksi dan doom scrolling? TanyaGPT akan membantu merangkum informasi penting untuk Anda."
+      },
+      "calendar": {
+        "title": "Manajemen Jadwal",
+        "description": "Integrasi dengan kalender untuk membantu mengatur jadwal meeting, reminder, dan to-do list dengan lebih efisien."
+      },
+      "documents": {
+        "title": "Asisten Dokumen",
+        "description": "Upload dan edit dokumen langsung dari chat. TanyaGPT akan membantu menulis, mengedit, dan memformat dokumen Anda."
+      },
+      "cta": {
+        "question1": "Ingin fitur favorit Anda segera tersedia?",
+        "question2": "Atau punya ide fitur lain yang belum ada di roadmap?",
+        "contact": "Hubungi Kami"
+      }
+    },
+    "testimonials": {
+      "title": "Apa Kata Pengguna",
+      "subtitle": "Pengalaman mereka menggunakan TanyaGPT",
+      "users": {
+        "andi": {
+          "text": "TanyaGPT sangat membantu saya dalam pekerjaan sehari-hari. Responsnya cepat dan akurat!",
+          "author": "Andi S."
+        },
+        "budi": {
+          "text": "Saya suka bagaimana TanyaGPT bisa membantu menganalisis gambar dan video. Fitur yang sangat berguna!",
+          "author": "Budi R."
+        },
+        "clara": {
+          "text": "Interface yang simpel dan mudah digunakan. Recommended banget buat yang butuh asisten AI!",
+          "author": "Clara W."
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© 2024 TanyaGPT. Semua hak dilindungi.",
+      "links": {
+        "terms": "Syarat dan Ketentuan",
+        "privacy": "Kebijakan Privasi",
+        "contact": "Hubungi Kami"
+      }
+    }
+  },
+  "en": {
+    "hero": {
+      "title": "TanyaGPT",
+      "subtitle": "Your Instant AI Assistant: Get Answers and Help Instantly.",
+      "description": "Start Chatting Directly from Telegram, Instagram, or WhatsApp – No Downloads Needed.",
+      "buttons": {
+        "telegram": "Chat on Telegram",
+        "instagram": "Chat on Instagram",
+        "whatsapp": "Chat on WhatsApp"
+      },
+      "demo": {
+        "alt": "Example interactions with TanyaGPT"
+      }
+    },
+    "showcase": {
+      "title": "Real-World Help: See TanyaGPT in Action",
+      "subtitle": "Discover how TanyaGPT assists users in their daily tasks",
+      "imageAnalysis": {
+        "title": "Analyze Images Instantly",
+        "description": "Send any image and TanyaGPT will help analyze, explain, or answer questions about it.",
+        "alt1": "Demo of image analysis on WhatsApp",
+        "alt2": "Demo of advanced image analysis on WhatsApp"
+      },
+      "shopping": {
+        "title": "Smart Shopping Assistant",
+        "description": "Want something? TanyaGPT helps compare products, check reviews, and recommend the best options for your needs.",
+        "alt1": "Demo of shopping assistant on Instagram",
+        "alt2": "Demo of product analysis on Instagram"
+      },
+      "news": {
+        "title": "Political News Analysis",
+        "description": "Stay updated with the latest political news directly from trusted sources. TanyaGPT helps analyze and summarize information to avoid hoaxes.",
+        "alt1": "Demo of political news analysis on Telegram",
+        "alt2": "Demo of advanced political news analysis on Telegram"
+      }
+    },
+    "features": {
+      "title": "Powerful Features",
+      "subtitle": "Your AI assistant comes packed with capabilities to help you succeed",
+      "chat": {
+        "title": "Always Available",
+        "description": "Get instant help 24/7 with any topic or question. Your AI companion is ready when you are."
+      },
+      "versatile": {
+        "title": "Versatile Assistant",
+        "description": "From writing emails to homework help, get expert assistance with your daily tasks and challenges."
+      },
+      "easyToUse": {
+        "title": "Easy to Use",
+        "description": "Just chat like you're chatting with a friend. No additional apps needed, just use Telegram or WhatsApp."
+      },
+      "imageAnalysis": {
+        "title": "Image Analysis",
+        "description": "Send any image and TanyaGPT will help analyze, explain, or answer questions about it."
+      },
+      "webSearch": {
+        "title": "Web Search",
+        "description": "TanyaGPT can search for current information on the internet to provide accurate and up-to-date answers."
+      },
+      "youtubeAnalysis": {
+        "title": "YouTube Video Analysis",
+        "description": "Send a YouTube link and TanyaGPT will help summarize or answer questions based on the video content."
+      },
+      "shopping": {
+        "title": "Shopping Assistant",
+        "description": "Shop on Tokopedia or Shopee more safely and economically. TanyaGPT helps compare prices and check seller reviews."
+      }
+    },
+    "advancedUsage": {
+      "title": "Advanced Usage",
+      "subtitle": "Optimize your experience with special commands",
+      "aiModel": {
+        "title": "Change AI Model",
+        "syntax": "/model [model_name]",
+        "description": "Choose which AI model you want to use:",
+        "models": {
+          "gpt4": {
+            "name": "openai/gpt-4o-mini",
+            "description": "Fast versatile model for various needs"
+          },
+          "gemini": {
+            "name": "google/gemini-flash-1.5-8b",
+            "description": "Suitable for very long conversations"
+          },
+          "deepseek": {
+            "name": "deepseek/deepseek-chat",
+            "description": "Smart assistant, but may have difficulty browsing the web"
+          }
+        }
+      },
+      "clear": {
+        "title": "Clear History",
+        "syntax": "/clear",
+        "description": "Clear conversation history to start a new topic with fresh focus."
+      },
+      "admin": {
+        "title": "Admin Support",
+        "syntax": "/admin [your_message]",
+        "description": "Connect with admin for help if you experience errors or have questions about the service"
+      }
+    },
+    "pricing": {
+      "title": "Pricing",
+      "subtitle": "Access TanyaGPT easily and affordably",
+      "earlyAccess": {
+        "title": "Early Access",
+        "price": "FREE",
+        "subtitle": "During testing period",
+        "features": {
+          "basic": "Access to all basic features",
+          "imageAnalysis": "Image analysis",
+          "webSearch": "Web search",
+          "youtube": "YouTube video analysis"
+        },
+        "limitations": {
+          "messages": "Limited messages for fair usage",
+          "pricing": "Pricing may change at any time"
+        },
+        "footer": {
+          "question": "Need more intensive usage?",
+          "contact": "Contact Us"
+        }
+      },
+      "note": "Why is it free? This is an exploration project from the author. The service may be discontinued or limited at any time."
+    },
+    "roadmap": {
+      "title": "Upcoming Features",
+      "subtitle": "We're continuously developing TanyaGPT to provide a better experience",
+      "memory": {
+        "title": "Long-term Memory",
+        "description": "Your assistant will remember preferences and information about you, providing more personal interactions in every chat session."
+      },
+      "email": {
+        "title": "Email Access",
+        "description": "Read and manage important emails, bills, and other communications with the help of your assistant."
+      },
+      "voiceNote": {
+        "title": "Voice Notes",
+        "description": "Send voice messages when you don't feel like typing, for a more natural chat experience."
+      },
+      "notifications": {
+        "title": "Proactive Notifications",
+        "description": "Your assistant will remind you of important things and proactively provide relevant information."
+      },
+      "socialMedia": {
+        "title": "Social Media Access",
+        "description": "Want to stay updated about family and friends without distraction and doom scrolling? TanyaGPT will help summarize important information for you."
+      },
+      "calendar": {
+        "title": "Schedule Management",
+        "description": "Calendar integration to help manage meeting schedules, reminders, and to-do lists more efficiently."
+      },
+      "documents": {
+        "title": "Document Assistant",
+        "description": "Upload and edit documents directly from chat. TanyaGPT will help write, edit, and format your documents."
+      },
+      "cta": {
+        "question1": "Want your favorite feature to be available soon?",
+        "question2": "Or have another feature idea not in the roadmap?",
+        "contact": "Contact Us"
+      }
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "subtitle": "Their experience using TanyaGPT",
+      "users": {
+        "andi": {
+          "text": "TanyaGPT has been very helpful in my daily work. The responses are quick and accurate!",
+          "author": "Andy S."
+        },
+        "budi": {
+          "text": "I love how TanyaGPT can help analyze images and videos. Such a useful feature!",
+          "author": "Bob R."
+        },
+        "clara": {
+          "text": "Simple and easy-to-use interface. Highly recommended for anyone who needs an AI assistant!",
+          "author": "Claire W."
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© 2024 TanyaGPT. All rights reserved.",
+      "links": {
+        "terms": "Terms and Conditions",
+        "privacy": "Privacy Policy",
+        "contact": "Contact Us"
+      }
+    }
+  }
+} 

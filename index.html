@@ -82,20 +82,68 @@
             return 'en';
         }
 
+        function loadTranslations(lang) {
+            fetch('translations.json')
+                .then(response => response.json())
+                .then(translations => {
+                    const langData = translations[lang];
+                    
+                    // Update all elements with data-i18n attribute
+                    document.querySelectorAll('[data-i18n]').forEach(element => {
+                        const keys = element.getAttribute('data-i18n').split('.');
+                        let value = langData;
+                        
+                        // Traverse the nested object using the keys
+                        for (const key of keys) {
+                            if (value) {
+                                value = value[key];
+                            }
+                        }
+                        
+                        if (value) {
+                            // For links and buttons, update text content
+                            if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+                                element.textContent = value;
+                            } else {
+                                // For other elements, set inner HTML to support formatting
+                                element.innerHTML = value;
+                            }
+                        }
+                    });
+
+                    // Update all elements with data-i18n-alt attribute (for image alt text)
+                    document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+                        const keys = element.getAttribute('data-i18n-alt').split('.');
+                        let value = langData;
+                        
+                        for (const key of keys) {
+                            if (value) {
+                                value = value[key];
+                            }
+                        }
+                        
+                        if (value) {
+                            element.alt = value;
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading translations:', error));
+        }
+
         function setLanguage(lang) {
             document.documentElement.lang = lang;
             document.querySelectorAll('[data-lang]').forEach(element => {
-                // Remove active class from all elements
                 element.classList.remove('active');
-                // Hide all elements
                 element.style.display = 'none';
                 
-                // Show and add active class to elements matching current language
                 if (element.dataset.lang === lang) {
                     element.classList.add('active');
                     element.style.display = 'block';
                 }
             });
+            
+            // Load and apply translations
+            loadTranslations(lang);
             
             // Update URL without reloading
             const url = new URL(window.location);
@@ -103,9 +151,10 @@
             window.history.pushState({}, '', url);
         }
 
-        // Initialize language on load
+        // Initialize language and translations on load
         document.addEventListener('DOMContentLoaded', () => {
-            setLanguage(getPreferredLanguage());
+            const initialLang = getPreferredLanguage();
+            setLanguage(initialLang);
         });
     </script>
 </head>
@@ -116,119 +165,61 @@
     </div>
 
     <section class="hero" id="beranda">
-        <div class="container" data-lang="id">
+        <div class="container">
             <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
-            <h1>TanyaGPT</h1>
-            <p class="hero-subtitle">Asisten AI Instan Anda: Dapatkan Jawaban dan Bantuan Seketika.</p>
-            <p>Mulai Chat Langsung dari Telegram, Instagram, atau WhatsApp – Tanpa Perlu Download Aplikasi.</p>
+            <h1 data-i18n="hero.title">TanyaGPT</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle"></p>
+            <p data-i18n="hero.description"></p>
             <div class="cta-buttons">
                 <a href="https://t.me/TanyaGPTBOT" class="button button-primary" data-umami-event="click-telegram">
-                    <i class="fab fa-telegram"></i> Chat di Telegram
+                    <i class="fab fa-telegram"></i> <span data-i18n="hero.buttons.telegram"></span>
                 </a>
                 <a href="https://instagram.com/tanyagpt.id" class="button button-primary" data-umami-event="click-instagram">
-                    <i class="fab fa-instagram"></i> Chat di Instagram
+                    <i class="fab fa-instagram"></i> <span data-i18n="hero.buttons.instagram"></span>
                 </a>
                 <a href="https://wa.me/message/MDOILGVKZ5O3N1" class="button button-primary" data-umami-event="click-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+                    <i class="fab fa-whatsapp"></i> <span data-i18n="hero.buttons.whatsapp"></span>
                 </a>
             </div>
-            <img src="img/demo_telegram_tanya_jawab_search_web.png" alt="Contoh interaksi dengan TanyaGPT" class="demo-image">
-        </div>
-
-        <div class="container" data-lang="en">
-            <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
-            <h1>TanyaGPT</h1>
-            <p class="hero-subtitle">Your Instant AI Assistant: Get Answers and Help Instantly.</p>
-            <p>Start Chatting Directly from Telegram, Instagram, or WhatsApp – No Downloads Needed.</p>
-            <div class="cta-buttons">
-                <a href="https://t.me/TanyaGPTBOT" class="button button-primary" data-umami-event="click-telegram">
-                    <i class="fab fa-telegram"></i> Chat on Telegram
-                </a>
-                <a href="https://instagram.com/tanyagpt.id" class="button button-primary" data-umami-event="click-instagram">
-                    <i class="fab fa-instagram"></i> Chat on Instagram
-                </a>
-                <a href="https://wa.me/message/MDOILGVKZ5O3N1" class="button button-primary" data-umami-event="click-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-            </div>
-            <img src="img/demo_telegram_tanya_jawab_search_web.png" alt="Example interactions with TanyaGPT" class="demo-image">
+            <img src="img/demo_telegram_tanya_jawab_search_web.png" alt="" data-i18n-alt="hero.demo.alt" class="demo-image">
         </div>
     </section>
 
     <section class="showcase" id="showcase">
-        <div class="container" data-lang="id">
+        <div class="container">
             <div class="section-title">
-                <h2><a href="#showcase" class="section-link">Lihat TanyaGPT Beraksi</a></h2>
-                <p>Temukan bagaimana TanyaGPT membantu pengguna dalam tugas sehari-hari</p>
+                <h2><a href="#showcase" class="section-link" data-i18n="showcase.title"></a></h2>
+                <p data-i18n="showcase.subtitle"></p>
             </div>
             <div class="showcase-grid">
                 <div class="showcase-item">
                     <div class="showcase-images">
-                        <img src="img/demo_whatsapp_image_analysis_1.png" alt="Demo analisis gambar di WhatsApp" class="showcase-image">
-                        <img src="img/demo_whatsapp_image_analysis_2.png" alt="Demo analisis gambar lanjutan di WhatsApp" class="showcase-image">
+                        <img src="img/demo_whatsapp_image_analysis_1.png" alt="" data-i18n-alt="showcase.imageAnalysis.alt1" class="showcase-image">
+                        <img src="img/demo_whatsapp_image_analysis_2.png" alt="" data-i18n-alt="showcase.imageAnalysis.alt2" class="showcase-image">
                     </div>
                     <div class="showcase-description">
-                        <h3>Analisis Gambar Instan</h3>
-                        <p>Kirim gambar apapun dan dapatkan penjelasan langsung di WhatsApp. Dari identifikasi objek hingga analisis dokumen.</p>
+                        <h3 data-i18n="showcase.imageAnalysis.title"></h3>
+                        <p data-i18n="showcase.imageAnalysis.description"></p>
                     </div>
                 </div>
                 <div class="showcase-item">
                     <div class="showcase-images">
-                        <img src="img/demo_instagram_shopping_1.png" alt="Demo asisten belanja di Instagram" class="showcase-image">
-                        <img src="img/demo_instagram_shopping_2.png" alt="Demo analisis produk di Instagram" class="showcase-image">
+                        <img src="img/demo_instagram_shopping_1.png" alt="" data-i18n-alt="showcase.shopping.alt1" class="showcase-image">
+                        <img src="img/demo_instagram_shopping_2.png" alt="" data-i18n-alt="showcase.shopping.alt2" class="showcase-image">
                     </div>
                     <div class="showcase-description">
-                        <h3>Asisten Belanja Pintar</h3>
-                        <p>Belanja di Instagram? TanyaGPT membantu membandingkan produk, mengecek review, dan merekomendasikan pilihan terbaik untuk Anda.</p>
+                        <h3 data-i18n="showcase.shopping.title"></h3>
+                        <p data-i18n="showcase.shopping.description"></p>
                     </div>
                 </div>
                 <div class="showcase-item">
                     <div class="showcase-images">
-                        <img src="img/demo_telegram_judicial_video_analysis_1.png" alt="Demo analisis berita politik di Telegram" class="showcase-image">
-                        <img src="img/demo_telegram_judicial_video_analysis_2.png" alt="Demo analisis lanjutan berita politik di Telegram" class="showcase-image">
+                        <img src="img/demo_telegram_judicial_video_analysis_1.png" alt="" data-i18n-alt="showcase.news.alt1" class="showcase-image">
+                        <img src="img/demo_telegram_judicial_video_analysis_2.png" alt="" data-i18n-alt="showcase.news.alt2" class="showcase-image">
                     </div>
                     <div class="showcase-description">
-                        <h3>Analisis Berita Politik</h3>
-                        <p>Tetap update dengan berita politik terkini langsung dari sumber terpercaya. TanyaGPT membantu menganalisis dan merangkum informasi untuk menghindari hoaks.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <div class="section-title">
-                <h2><a href="#showcase" class="section-link">Real-World Help: See TanyaGPT in Action</a></h2>
-                <p>Discover how TanyaGPT assists users in their daily tasks</p>
-            </div>
-            <div class="showcase-grid">
-                <div class="showcase-item">
-                    <div class="showcase-images">
-                        <img src="img/demo_whatsapp_image_analysis_1.png" alt="Demo of image analysis on WhatsApp" class="showcase-image">
-                        <img src="img/demo_whatsapp_image_analysis_2.png" alt="Demo of advanced image analysis on WhatsApp" class="showcase-image">
-                    </div>
-                    <div class="showcase-description">
-                        <h3>Analyze Images Instantly</h3>
-                        <p>Send any image and TanyaGPT will help analyze, explain, or answer questions about it.</p>
-                    </div>
-                </div>
-                <div class="showcase-item">
-                    <div class="showcase-images">
-                        <img src="img/demo_instagram_shopping_1.png" alt="Demo of shopping assistant on Instagram" class="showcase-image">
-                        <img src="img/demo_instagram_shopping_2.png" alt="Demo of product analysis on Instagram" class="showcase-image">
-                    </div>
-                    <div class="showcase-description">
-                        <h3>Smart Shopping Assistant</h3>
-                        <p>Want something? TanyaGPT helps compare products, check reviews, and recommend the best options for your needs.</p> 
-                    </div>
-                </div>
-                <div class="showcase-item">
-                    <div class="showcase-images">
-                        <img src="img/demo_telegram_judicial_video_analysis_1.png" alt="Demo of political news analysis on Telegram" class="showcase-image">
-                        <img src="img/demo_telegram_judicial_video_analysis_2.png" alt="Demo of advanced political news analysis on Telegram" class="showcase-image">
-                    </div>
-                    <div class="showcase-description">
-                        <h3>Political News Analysis</h3>
-                        <p>Stay updated with the latest political news directly from trusted sources. TanyaGPT helps analyze and summarize information to avoid hoaxes.</p>
+                        <h3 data-i18n="showcase.news.title"></h3>
+                        <p data-i18n="showcase.news.description"></p>
                     </div>
                 </div>
             </div>
@@ -236,188 +227,103 @@
     </section>
 
     <section class="features" id="fitur">
-        <div class="container" data-lang="id">
+        <div class="container">
             <div class="section-title">
-                <h2><a href="#fitur" class="section-link">Fitur Unggulan</a></h2>
-                <p>Asisten AI Anda dilengkapi kemampuan untuk membantu Anda berhasil</p>
+                <h2><a href="#fitur" class="section-link" data-i18n="features.title"></a></h2>
+                <p data-i18n="features.subtitle"></p>
             </div>
             <div class="features-grid">
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Teman Ngobrol">
-                    <h3><i class="fas fa-comments"></i> Selalu Siap 24/7</h3>
-                    <p>Dapatkan bantuan instan kapan saja dengan berbagai topik. Asisten AI Anda siap saat Anda membutuhkan.</p>
+                    data-umami-event-feature="chat">
+                    <h3><i class="fas fa-comments"></i> <span data-i18n="features.chat.title"></span></h3>
+                    <p data-i18n="features.chat.description"></p>
                 </div>
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Bantuan Segala Hal">
-                    <h3><i class="fas fa-tasks"></i> Asisten Serba Bisa</h3>
-                    <p>Dari menulis email hingga membantu PR, dapatkan bantuan ahli untuk tugas dan tantangan sehari-hari Anda.</p>
+                    data-umami-event-feature="versatile">
+                    <h3><i class="fas fa-tasks"></i> <span data-i18n="features.versatile.title"></span></h3>
+                    <p data-i18n="features.versatile.description"></p>
                 </div>
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Mudah Digunakan">
-                    <h3><i class="fas fa-mobile-alt"></i> Mudah Digunakan</h3>
-                    <p>Cukup chat seperti chatting dengan teman. Tidak perlu aplikasi tambahan, cukup gunakan Telegram atau WhatsApp.</p>
+                    data-umami-event-feature="easyToUse">
+                    <h3><i class="fas fa-mobile-alt"></i> <span data-i18n="features.easyToUse.title"></span></h3>
+                    <p data-i18n="features.easyToUse.description"></p>
                 </div>
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Analisis Gambar">
-                    <h3><i class="fas fa-image"></i> Analisis Gambar</h3>
-                    <p>Kirim gambar dan TanyaGPT akan membantu menganalisis, menjelaskan, atau menjawab pertanyaan tentang gambar tersebut.</p>
+                    data-umami-event-feature="imageAnalysis">
+                    <h3><i class="fas fa-image"></i> <span data-i18n="features.imageAnalysis.title"></span></h3>
+                    <p data-i18n="features.imageAnalysis.description"></p>
                 </div>
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Penelusuran Web">
-                    <h3><i class="fas fa-search"></i> Penelusuran Web</h3>
-                    <p>TanyaGPT dapat mencari informasi terkini di internet untuk memberikan jawaban yang akurat dan up-to-date.</p>
+                    data-umami-event-feature="webSearch">
+                    <h3><i class="fas fa-search"></i> <span data-i18n="features.webSearch.title"></span></h3>
+                    <p data-i18n="features.webSearch.description"></p>
                 </div>
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Analisis Video YouTube">
-                    <h3><i class="fab fa-youtube"></i> Analisis Video YouTube</h3>
-                    <p>Kirim link YouTube dan TanyaGPT akan membantu merangkum atau menjawab pertanyaan berdasarkan konten video.</p>
+                    data-umami-event-feature="youtubeAnalysis">
+                    <h3><i class="fab fa-youtube"></i> <span data-i18n="features.youtubeAnalysis.title"></span></h3>
+                    <p data-i18n="features.youtubeAnalysis.description"></p>
                 </div>
                 <div class="feature-card"
                     data-umami-event="hover-feature" 
-                    data-umami-event-feature="Asisten Belanja">
-                    <h3><i class="fas fa-shopping-cart"></i> Asisten Belanja</h3>
-                    <p>Belanja di Tokopedia atau Shopee dengan lebih aman dan hemat. TanyaGPT membantu membandingkan harga dan mengecek review penjual.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <div class="section-title">
-                <h2><a href="#fitur" class="section-link">Powerful Features</a></h2>
-                <p>Your AI assistant comes packed with capabilities to help you succeed</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3><i class="fas fa-comments"></i> Always Available</h3>
-                    <p>Get instant help 24/7 with any topic or question. Your AI companion is ready when you are.</p>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-tasks"></i> Versatile Assistant</h3>
-                    <p>From writing emails to homework help, get expert assistance with your daily tasks and challenges.</p>
-                </div>
-                <div class="feature-card"
-                    data-umami-event="hover-feature" 
-                    data-umami-event-feature="Mudah Digunakan">
-                    <h3><i class="fas fa-mobile-alt"></i> Easy to Use</h3>
-                    <p>Just chat like you're chatting with a friend. No additional apps needed, just use Telegram or WhatsApp.</p>
-                </div>
-                <div class="feature-card"
-                    data-umami-event="hover-feature" 
-                    data-umami-event-feature="Analisis Gambar">
-                    <h3><i class="fas fa-image"></i> Image Analysis</h3>
-                    <p>Send any image and TanyaGPT will help analyze, explain, or answer questions about it.</p>
-                </div>
-                <div class="feature-card"
-                    data-umami-event="hover-feature" 
-                    data-umami-event-feature="Penelusuran Web">
-                    <h3><i class="fas fa-search"></i> Web Search</h3>
-                    <p>TanyaGPT can search for current information on the internet to provide accurate and up-to-date answers.</p>
-                </div>
-                <div class="feature-card"
-                    data-umami-event="hover-feature" 
-                    data-umami-event-feature="Analisis Video YouTube">
-                    <h3><i class="fab fa-youtube"></i> YouTube Video Analysis</h3>
-                    <p>Send a YouTube link and TanyaGPT will help summarize or answer questions based on the video content.</p>
-                </div>
-                <div class="feature-card"
-                    data-umami-event="hover-feature" 
-                    data-umami-event-feature="Asisten Belanja">
-                    <h3><i class="fas fa-shopping-cart"></i> Shopping Assistant</h3>
-                    <p>Shop on Tokopedia or Shopee more safely and economically. TanyaGPT helps compare prices and check seller reviews.</p>
+                    data-umami-event-feature="shopping">
+                    <h3><i class="fas fa-shopping-cart"></i> <span data-i18n="features.shopping.title"></span></h3>
+                    <p data-i18n="features.shopping.description"></p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="advanced-usage" id="penggunaan">
-        <div class="container" data-lang="id">
+        <div class="container">
             <div class="section-title">
-                <h2><a href="#penggunaan" class="section-link">Penggunaan Lanjutan</a></h2>
-                <p>Optimalkan pengalaman Anda dengan perintah khusus</p>
+                <h2><a href="#penggunaan" class="section-link" data-i18n="advancedUsage.title"></a></h2>
+                <p data-i18n="advancedUsage.subtitle"></p>
             </div>
             <div class="commands-grid">
                 <div class="command-card">
-                    <h3><i class="fas fa-robot"></i> Ganti Model AI</h3>
-                    <p class="command-syntax">/model [nama_model]</p>
-                    <p>Pilih model AI yang ingin Anda gunakan:</p>
+                    <h3><i class="fas fa-robot"></i> <span data-i18n="advancedUsage.aiModel.title"></span></h3>
+                    <p class="command-syntax" data-i18n="advancedUsage.aiModel.syntax"></p>
+                    <p data-i18n="advancedUsage.aiModel.description"></p>
                     <div class="model-options">
                         <div class="model-option">
-                            <code>openai/gpt-4o-mini</code>
-                            <p class="model-description">Model serba bisa yang cepat untuk berbagai kebutuhan</p>
+                            <code data-i18n="advancedUsage.aiModel.models.gpt4.name"></code>
+                            <p class="model-description" data-i18n="advancedUsage.aiModel.models.gpt4.description"></p>
                         </div>
                         <div class="model-option">
-                            <code>google/gemini-flash-1.5-8b</code>
-                            <p class="model-description">Cocok untuk percakapan yang sangat panjang</p>
+                            <code data-i18n="advancedUsage.aiModel.models.gemini.name"></code>
+                            <p class="model-description" data-i18n="advancedUsage.aiModel.models.gemini.description"></p>
                         </div>
                         <div class="model-option">
-                            <code>deepseek/deepseek-chat</code>
-                            <p class="model-description">Asisten pintar, tapi mungkin ada kesulitan browsing web</p>
+                            <code data-i18n="advancedUsage.aiModel.models.deepseek.name"></code>
+                            <p class="model-description" data-i18n="advancedUsage.aiModel.models.deepseek.description"></p>
                         </div>
                     </div>
                 </div>
                 <div class="command-card">
-                    <h3><i class="fas fa-broom"></i> Bersihkan Riwayat</h3>
-                    <p class="command-syntax">/clear</p>
-                    <p>Hapus riwayat percakapan untuk memulai topik baru dengan fokus yang segar.</p>
+                    <h3><i class="fas fa-broom"></i> <span data-i18n="advancedUsage.clear.title"></span></h3>
+                    <p class="command-syntax" data-i18n="advancedUsage.clear.syntax"></p>
+                    <p data-i18n="advancedUsage.clear.description"></p>
                 </div>
                 <div class="command-card">
-                    <h3><i class="fas fa-headset"></i> Bantuan Admin</h3>
-                    <p class="command-syntax">/admin [pesan_anda]</p>
-                    <p>Hubungkan dengan admin untuk bantuan jika mengalami error atau ada pertanyaan tentang layanan</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <div class="section-title">
-                <h2><a href="#penggunaan" class="section-link">Advanced Usage</a></h2>
-                <p>Optimize your experience with special commands</p>
-            </div>
-            <div class="commands-grid">
-                <div class="command-card">
-                    <h3><i class="fas fa-robot"></i> Change AI Model</h3>
-                    <p class="command-syntax">/model [model_name]</p>
-                    <p>Choose which AI model you want to use:</p>
-                    <div class="model-options">
-                        <div class="model-option">
-                            <code>openai/gpt-4o-mini</code>
-                            <p class="model-description">Fast versatile model for various needs</p>
-                        </div>
-                        <div class="model-option">
-                            <code>google/gemini-flash-1.5-8b</code>
-                            <p class="model-description">Suitable for very long conversations</p>
-                        </div>
-                        <div class="model-option">
-                            <code>deepseek/deepseek-chat</code>
-                            <p class="model-description">Smart assistant, but may have difficulty browsing the web</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="command-card">
-                    <h3><i class="fas fa-broom"></i> Clear History</h3>
-                    <p class="command-syntax">/clear</p>
-                    <p>Clear conversation history to start a new topic with fresh focus.</p>
-                </div>
-                <div class="command-card">
-                    <h3><i class="fas fa-headset"></i> Admin Support</h3>
-                    <p class="command-syntax">/admin [your_message]</p>
-                    <p>Connect with admin for help if you experience errors or have questions about the service</p>
+                    <h3><i class="fas fa-headset"></i> <span data-i18n="advancedUsage.admin.title"></span></h3>
+                    <p class="command-syntax" data-i18n="advancedUsage.admin.syntax"></p>
+                    <p data-i18n="advancedUsage.admin.description"></p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="pricing" id="harga">
-        <div class="container" data-lang="id">
+        <div class="container">
             <div class="section-title">
-                <h2><a href="#harga" class="section-link">Harga</a></h2>
-                <p>Akses TanyaGPT dengan mudah dan terjangkau</p>
+                <h2><a href="#harga" class="section-link" data-i18n="pricing.title"></a></h2>
+                <p data-i18n="pricing.subtitle"></p>
             </div>
             <div class="pricing-content">
                 <div class="pricing-card"
@@ -426,304 +332,148 @@
                     data-umami-event="click-pricing" 
                     data-umami-event-plan="Early Access">
                     <div class="pricing-header">
-                        <h3>Early Access</h3>
-                        <div class="price">GRATIS</div>
-                        <p class="price-subtitle">Selama masa testing</p>
+                        <h3 data-i18n="pricing.earlyAccess.title"></h3>
+                        <div class="price" data-i18n="pricing.earlyAccess.price"></div>
+                        <p class="price-subtitle" data-i18n="pricing.earlyAccess.subtitle"></p>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Akses ke semua fitur dasar</li>
-                            <li><i class="fas fa-check"></i> Analisis gambar</li>
-                            <li><i class="fas fa-check"></i> Penelusuran web</li>
-                            <li><i class="fas fa-check"></i> Analisis video YouTube</li>
-                            <li><i class="fas fa-info-circle"></i> Dibatasi jumlah pesan untuk penggunaan yang wajar</li>
-                            <li><i class="fas fa-info-circle"></i> Harga dapat berubah sewaktu-waktu</li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.earlyAccess.features.basic"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.earlyAccess.features.imageAnalysis"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.earlyAccess.features.webSearch"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.earlyAccess.features.youtube"></span></li>
+                            <li><i class="fas fa-info-circle"></i> <span data-i18n="pricing.earlyAccess.limitations.messages"></span></li>
+                            <li><i class="fas fa-info-circle"></i> <span data-i18n="pricing.earlyAccess.limitations.pricing"></span></li>
                         </ul>
                     </div>
                     <div class="pricing-footer">
-                        <p>Butuh penggunaan lebih intensif?</p>
+                        <p data-i18n="pricing.earlyAccess.footer.question"></p>
                         <a href="mailto:halo@tanyagpt.my.id" class="button button-outline">
-                            <i class="fas fa-envelope"></i> Hubungi Kami
+                            <i class="fas fa-envelope"></i> <span data-i18n="pricing.earlyAccess.footer.contact"></span>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="pricing-note">
-                <p><i class="fas fa-info-circle"></i> Kok bisa gratis? Ini adalah exploration project dari author. Layanan produk dapat dihentikan atau dibatasi sewaktu-waktu.</p>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <div class="section-title">
-                <h2><a href="#harga" class="section-link">Pricing</a></h2>
-                <p>Access TanyaGPT easily and affordably</p>
-            </div>
-            <div class="pricing-content">
-                <div class="pricing-card"
-                    data-umami-event="hover-pricing" 
-                    data-umami-event-plan="Early Access"
-                    data-umami-event="click-pricing" 
-                    data-umami-event-plan="Early Access">
-                    <div class="pricing-header">
-                        <h3>Early Access</h3>
-                        <div class="price">FREE</div>
-                        <p class="price-subtitle">During testing period</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Access to all basic features</li>
-                            <li><i class="fas fa-check"></i> Image analysis</li>
-                            <li><i class="fas fa-check"></i> Web search</li>
-                            <li><i class="fas fa-check"></i> YouTube video analysis</li>
-                            <li><i class="fas fa-info-circle"></i> Limited messages for fair usage</li>
-                            <li><i class="fas fa-info-circle"></i> Pricing may change at any time</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <p>Need more intensive usage?</p>
-                        <a href="mailto:halo@tanyagpt.my.id" class="button button-outline">
-                            <i class="fas fa-envelope"></i> Contact Us
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="pricing-note">
-                <p><i class="fas fa-info-circle"></i> Why is it free? This is an exploration project from the author. The service may be discontinued or limited at any time.</p>
+                <p><i class="fas fa-info-circle"></i> <span data-i18n="pricing.note"></span></p>
             </div>
         </div>
     </section>
 
     <section class="roadmap" id="roadmap">
-        <div class="container" data-lang="id">
+        <div class="container">
             <div class="section-title">
-                <h2><a href="#roadmap" class="section-link">Fitur Mendatang</a></h2>
-                <p>Kami terus mengembangkan TanyaGPT untuk memberikan pengalaman yang lebih baik</p>
+                <h2><a href="#roadmap" class="section-link" data-i18n="roadmap.title"></a></h2>
+                <p data-i18n="roadmap.subtitle"></p>
             </div>
             <div class="roadmap-grid">
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Memori Jangka Panjang">
+                    data-umami-event-feature="memory">
                     <div class="roadmap-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3>Memori Jangka Panjang</h3>
-                    <p>Asisten Anda akan mengingat preferensi dan informasi tentang Anda, memberikan interaksi yang lebih personal di setiap sesi chat.</p>
+                    <h3 data-i18n="roadmap.memory.title"></h3>
+                    <p data-i18n="roadmap.memory.description"></p>
                 </div>
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Akses Email">
+                    data-umami-event-feature="email">
                     <div class="roadmap-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <h3>Akses Email</h3>
-                    <p>Baca dan kelola email penting, tagihan, dan komunikasi lainnya dengan bantuan asisten Anda.</p>
+                    <h3 data-i18n="roadmap.email.title"></h3>
+                    <p data-i18n="roadmap.email.description"></p>
                 </div>
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Voice Note">
+                    data-umami-event-feature="voice">
                     <div class="roadmap-icon">
                         <i class="fas fa-microphone"></i>
                     </div>
-                    <h3>Voice Note</h3>
-                    <p>Kirim pesan suara saat Anda sedang tidak ingin mengetik, untuk pengalaman chat yang lebih natural.</p>
+                    <h3 data-i18n="roadmap.voiceNote.title"></h3>
+                    <p data-i18n="roadmap.voiceNote.description"></p>
                 </div>
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Notifikasi Proaktif">
+                    data-umami-event-feature="notifikasi">
                     <div class="roadmap-icon">
                         <i class="fas fa-bell"></i>
                     </div>
-                    <h3>Notifikasi Proaktif</h3>
-                    <p>Asisten Anda akan mengingatkan hal-hal penting dan memberikan informasi yang relevan secara proaktif.</p>
+                    <h3 data-i18n="roadmap.notifications.title"></h3>
+                    <p data-i18n="roadmap.notifications.description"></p>
                 </div>
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Akses Media Sosial">
+                    data-umami-event-feature="media">
                     <div class="roadmap-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Akses Media Sosial</h3>
-                    <p>Ingin tetap update tentang keluarga dan teman tanpa terdistraksi dan doom scrolling? TanyaGPT akan membantu merangkum informasi penting untuk Anda.</p>
+                    <h3 data-i18n="roadmap.socialMedia.title"></h3>
+                    <p data-i18n="roadmap.socialMedia.description"></p>
                 </div>
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Manajemen Jadwal">
+                    data-umami-event-feature="jadwal">
                     <div class="roadmap-icon">
                         <i class="fas fa-calendar-check"></i>
                     </div>
-                    <h3>Manajemen Jadwal</h3>
-                    <p>Integrasi dengan kalender untuk membantu mengatur jadwal meeting, reminder, dan to-do list dengan lebih efisien.</p>
+                    <h3 data-i18n="roadmap.calendar.title"></h3>
+                    <p data-i18n="roadmap.calendar.description"></p>
                 </div>
                 <div class="roadmap-card"
                     data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Asisten Dokumen">
+                    data-umami-event-feature="dokumen">
                     <div class="roadmap-icon">
                         <i class="fas fa-file-alt"></i>
                     </div>
-                    <h3>Asisten Dokumen</h3>
-                    <p>Upload dan edit dokumen langsung dari chat. TanyaGPT akan membantu menulis, mengedit, dan memformat dokumen Anda.</p>
+                    <h3 data-i18n="roadmap.documents.title"></h3>
+                    <p data-i18n="roadmap.documents.description"></p>
                 </div>
             </div>
             <div class="roadmap-cta">
-                <p>Ingin fitur favorit Anda segera tersedia?</p>
-                <p>Atau punya ide fitur lain yang belum ada di roadmap?</p>
+                <p data-i18n="roadmap.cta.question1"></p>
+                <p data-i18n="roadmap.cta.question2"></p>
                 <a href="mailto:halo@tanyagpt.my.id" class="button button-outline" data-umami-event="click-roadmap-cta">
-                    <i class="fas fa-envelope"></i> Hubungi Kami
-                </a>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <div class="section-title">
-                <h2><a href="#roadmap" class="section-link">Upcoming Features</a></h2>
-                <p>We're continuously developing TanyaGPT to provide a better experience</p>
-            </div>
-            <div class="roadmap-grid">
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Long-term Memory">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Long-term Memory</h3>
-                    <p>Your assistant will remember preferences and information about you, providing more personal interactions in every chat session.</p>
-                </div>
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Email Access">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email Access</h3>
-                    <p>Read and manage important emails, bills, and other communications with the help of your assistant.</p>
-                </div>
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Voice Note">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <h3>Voice Notes</h3>
-                    <p>Send voice messages when you don't feel like typing, for a more natural chat experience.</p>
-                </div>
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Proactive Notifications">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3>Proactive Notifications</h3>
-                    <p>Your assistant will remind you of important things and proactively provide relevant information.</p>
-                </div>
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Social Media Access">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Social Media Access</h3>
-                    <p>Want to stay updated about family and friends without distraction and doom scrolling? TanyaGPT will help summarize important information for you.</p>
-                </div>
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Schedule Management">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Schedule Management</h3>
-                    <p>Calendar integration to help manage meeting schedules, reminders, and to-do lists more efficiently.</p>
-                </div>
-                <div class="roadmap-card"
-                    data-umami-event="hover-roadmap" 
-                    data-umami-event-feature="Document Assistant">
-                    <div class="roadmap-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Document Assistant</h3>
-                    <p>Upload and edit documents directly from chat. TanyaGPT will help write, edit, and format your documents.</p>
-                </div>
-            </div>
-            <div class="roadmap-cta">
-                <p>Want your favorite feature to be available soon?</p>
-                <p>Or have an idea for a feature not in the roadmap?</p>
-                <a href="mailto:halo@tanyagpt.my.id" class="button button-outline" data-umami-event="click-roadmap-cta">
-                    <i class="fas fa-envelope"></i> Contact Us
+                    <i class="fas fa-envelope"></i> <span data-i18n="roadmap.cta.contact"></span>
                 </a>
             </div>
         </div>
     </section>
 
     <section class="testimonials" id="testimonial">
-        <div class="container" data-lang="id">
+        <div class="container">
             <div class="section-title">
-                <h2><a href="#testimonial" class="section-link">Apa Kata Pengguna</a></h2>
-                <p>Pengalaman mereka menggunakan TanyaGPT</p>
+                <h2><a href="#testimonial" class="section-link" data-i18n="testimonials.title"></a></h2>
+                <p data-i18n="testimonials.subtitle"></p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card"
                     data-umami-event="hover-testimonial" 
                     data-umami-event-author="Andi S."
                     data-umami-event="click-testimonial">
-                    <p>"TanyaGPT sangat membantu saya dalam pekerjaan sehari-hari. Responsnya cepat dan akurat!"</p>
-                    <p class="testimonial-author">- Andi S.</p>
+                    <p data-i18n="testimonials.users.andi.text"></p>
+                    <p class="testimonial-author">- <span data-i18n="testimonials.users.andi.author"></span></p>
                 </div>
                 <div class="testimonial-card">
-                    <p>"Saya suka bagaimana TanyaGPT bisa membantu menganalisis gambar dan video. Fitur yang sangat berguna!"</p>
-                    <p class="testimonial-author">- Budi R.</p>
+                    <p data-i18n="testimonials.users.budi.text"></p>
+                    <p class="testimonial-author">- <span data-i18n="testimonials.users.budi.author"></span></p>
                 </div>
                 <div class="testimonial-card">
-                    <p>"Interface yang simpel dan mudah digunakan. Recommended banget buat yang butuh asisten AI!"</p>
-                    <p class="testimonial-author">- Clara W.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <div class="section-title">
-                <h2><a href="#testimonial" class="section-link">User Testimonials</a></h2>
-                <p>Their experience using TanyaGPT</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card"
-                    data-umami-event="hover-testimonial" 
-                    data-umami-event-author="Andy S."
-                    data-umami-event="click-testimonial">
-                    <p>"TanyaGPT has been very helpful in my daily work. The responses are quick and accurate!"</p>
-                    <p class="testimonial-author">- Andy S.</p>
-                </div>
-                <div class="testimonial-card">
-                    <p>"I love how TanyaGPT can help analyze images and videos. Such a useful feature!"</p>
-                    <p class="testimonial-author">- Bob R.</p>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Simple and easy-to-use interface. Highly recommended for anyone who needs an AI assistant!"</p>
-                    <p class="testimonial-author">- Claire W.</p>
+                    <p data-i18n="testimonials.users.clara.text"></p>
+                    <p class="testimonial-author">- <span data-i18n="testimonials.users.clara.author"></span></p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container" data-lang="id">
-            <p>© 2024 TanyaGPT. Semua hak dilindungi.</p>
+        <div class="container">
+            <p data-i18n="footer.copyright"></p>
             <div class="footer-links">
-                <a href="terms.html">Syarat dan Ketentuan</a>
-                <a href="privacy.html">Kebijakan Privasi</a>
-                <a href="mailto:halo@tanyagpt.my.id">Hubungi Kami</a>
-            </div>
-            <div class="social-links">
-                <a href="https://instagram.com/tanyagpt.id" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/TanyaGPTBOT" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="https://wa.me/message/MDOILGVKZ5O3N1" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-
-        <div class="container" data-lang="en">
-            <p>© 2024 TanyaGPT. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="terms.html">Terms and Conditions</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="mailto:halo@tanyagpt.my.id">Contact Us</a>
+                <a href="terms.html" data-i18n="footer.links.terms"></a>
+                <a href="privacy.html" data-i18n="footer.links.privacy"></a>
+                <a href="mailto:halo@tanyagpt.my.id" data-i18n="footer.links.contact"></a>
             </div>
             <div class="social-links">
                 <a href="https://instagram.com/tanyagpt.id" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
