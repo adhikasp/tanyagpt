@@ -16,6 +16,12 @@
     "showcase": {
       "title": "Lihat TanyaGPT Beraksi",
       "subtitle": "Temukan bagaimana TanyaGPT membantu pengguna dalam tugas sehari-hari",
+      "voiceNote": {
+        "title": "Komunikasi Handsfree",
+        "description": "Sibuk atau sedang mengemudi? Kirim pesan suara untuk berkomunikasi dengan asisten AI Anda dengan lebih natural, tanpa perlu mengetik.",
+        "alt1": "Demo penggunaan voice note di WhatsApp",
+        "alt2": "Demo lanjutan penggunaan voice note di WhatsApp"
+      },
       "imageAnalysis": {
         "title": "Analisis Gambar Instan",
         "description": "Kirim gambar apapun dan dapatkan penjelasan langsung di WhatsApp. Dari identifikasi objek hingga analisis dokumen.",
@@ -70,6 +76,10 @@
       "shopping": {
         "title": "Asisten Belanja",
         "description": "Belanja di Tokopedia atau Shopee dengan lebih aman dan hemat. TanyaGPT membantu membandingkan harga dan mengecek review penjual."
+      },
+      "voiceNote": {
+        "title": "Voice Note",
+        "description": "Kirim pesan suara saat Anda sedang tidak ingin mengetik, untuk pengalaman chat yang lebih natural."
       }      
     },
     "advancedUsage": {
@@ -140,10 +150,6 @@
         "title": "Akses Email",
         "description": "Baca dan kelola email penting, tagihan, dan komunikasi lainnya dengan bantuan asisten Anda."
       },
-      "voiceNote": {
-        "title": "Voice Note",
-        "description": "Kirim pesan suara saat Anda sedang tidak ingin mengetik, untuk pengalaman chat yang lebih natural."
-      },
       "notifications": {
         "title": "Notifikasi Proaktif",
         "description": "Asisten Anda akan mengingatkan hal-hal penting dan memberikan informasi yang relevan secara proaktif."
@@ -210,6 +216,12 @@
     "showcase": {
       "title": "Real-World Help: See TanyaGPT in Action",
       "subtitle": "Discover how TanyaGPT assists users in their daily tasks",
+      "voiceNote": {
+        "title": "Hands-free Communication",
+        "description": "Busy or driving? Send voice messages to communicate with your AI assistant more naturally, without typing.",
+        "alt1": "Demo of voice note usage on WhatsApp",
+        "alt2": "Demo of advanced voice note usage on WhatsApp"
+      },
       "imageAnalysis": {
         "title": "Analyze Images Instantly",
         "description": "Send any image and TanyaGPT will help analyze, explain, or answer questions about it.",
@@ -264,6 +276,10 @@
       "shopping": {
         "title": "Shopping Assistant",
         "description": "Shop on Tokopedia or Shopee more safely and economically. TanyaGPT helps compare prices and check seller reviews."
+      },
+      "voiceNote": {
+        "title": "Voice Notes",
+        "description": "Send voice messages when you don't feel like typing, for a more natural chat experience."
       }
     },
     "advancedUsage": {
@@ -333,10 +349,6 @@
       "email": {
         "title": "Email Access",
         "description": "Read and manage important emails, bills, and other communications with the help of your assistant."
-      },
-      "voiceNote": {
-        "title": "Voice Notes",
-        "description": "Send voice messages when you don't feel like typing, for a more natural chat experience."
       },
       "notifications": {
         "title": "Proactive Notifications",
