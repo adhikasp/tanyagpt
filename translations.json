@@ -7,7 +7,7 @@
       "buttons": {
         "telegram": "Chat di Telegram",
         "instagram": "Chat di Instagram",
-        "whatsapp": "Chat di WhatsApp"
+        "whatsapp": "WhatsApp (invite only)"
       },
       "demo": {
         "alt": "Contoh interaksi dengan TanyaGPT"
@@ -245,7 +245,7 @@
       "buttons": {
         "telegram": "Chat on Telegram",
         "instagram": "Chat on Instagram",
-        "whatsapp": "Chat on WhatsApp"
+        "whatsapp": "WhatsApp (invite only)"
       },
       "demo": {
         "alt": "Example interactions with TanyaGPT"
