@@ -195,7 +195,45 @@
       "links": {
         "terms": "Syarat dan Ketentuan",
         "privacy": "Kebijakan Privasi",
-        "contact": "Hubungi Kami"
+        "contact": "Hubungi Kami",
+        "back": "Kembali ke Beranda"
+      }
+    },
+    "architecture": {
+      "title": "Arsitektur",
+      "subtitle": "Bagaimana TanyaGPT bekerja di balik layar",
+      "diagram": {
+        "alt": "Diagram komponen TanyaGPT"
+      },
+      "components": {
+        "user": {
+          "title": "Pengguna",
+          "description": "Pengguna berinteraksi dengan TanyaGPT melalui platform chat yang mereka sukai - Telegram, WhatsApp, atau Instagram."
+        },
+        "bots": {
+          "title": "Bot Platform",
+          "description": "Bot khusus untuk setiap platform menangani pesan masuk dan keluar, memastikan pengalaman yang mulus di setiap platform."
+        },
+        "baseHandler": {
+          "title": "Base Handler",
+          "description": "Kelas abstrak yang mendefinisikan fungsionalitas umum untuk semua bot, termasuk pemrosesan perintah dan manajemen sesi."
+        },
+        "voiceHandler": {
+          "title": "Voice Handler",
+          "description": "Menangani pesan suara dengan mentranskripsikan audio menggunakan Gemini API untuk pemrosesan lebih lanjut."
+        },
+        "messageHandler": {
+          "title": "Message Handler",
+          "description": "Memproses pesan menggunakan LangGraph ReAct agent untuk memberikan respons yang cerdas dan kontekstual."
+        },
+        "tools": {
+          "title": "Tools",
+          "description": "Kumpulan alat yang memperluas kemampuan bot, seperti pencarian web, analisis gambar, dan integrasi API eksternal."
+        },
+        "external": {
+          "title": "Layanan Eksternal",
+          "description": "Integrasi dengan berbagai API dan layanan untuk memperkaya fungsionalitas, termasuk Gemini, Supabase, dan OpenRouter."
+        }
       }
     }
   },
@@ -395,7 +433,45 @@
       "links": {
         "terms": "Terms and Conditions",
         "privacy": "Privacy Policy",
-        "contact": "Contact Us"
+        "contact": "Contact Us",
+        "back": "Back to Home"
+      }
+    },
+    "architecture": {
+      "title": "Architecture",
+      "subtitle": "How TanyaGPT works behind the scenes",
+      "diagram": {
+        "alt": "TanyaGPT component diagram"
+      },
+      "components": {
+        "user": {
+          "title": "User",
+          "description": "Users interact with TanyaGPT through their preferred chat platform - Telegram, WhatsApp, or Instagram."
+        },
+        "bots": {
+          "title": "Platform Bots",
+          "description": "Dedicated bots for each platform handle incoming and outgoing messages, ensuring a seamless experience across platforms."
+        },
+        "baseHandler": {
+          "title": "Base Handler",
+          "description": "Abstract class that defines common functionality for all bots, including command processing and session management."
+        },
+        "voiceHandler": {
+          "title": "Voice Handler",
+          "description": "Handles voice messages by transcribing audio using Gemini API for further processing."
+        },
+        "messageHandler": {
+          "title": "Message Handler",
+          "description": "Processes messages using LangGraph ReAct agent to provide intelligent and contextual responses."
+        },
+        "tools": {
+          "title": "Tools",
+          "description": "Collection of tools that extend bot capabilities, such as web search, image analysis, and external API integrations."
+        },
+        "external": {
+          "title": "External Services",
+          "description": "Integration with various APIs and services to enrich functionality, including Gemini, Supabase, and OpenRouter."
+        }
       }
     }
   }

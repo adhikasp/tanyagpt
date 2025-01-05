@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TanyaGPT - Architecture</title>
+    
+    <!-- Add Open Graph meta tags -->
+    <meta property="og:title" content="TanyaGPT - Architecture">
+    <meta property="og:description" content="How TanyaGPT works behind the scenes - A detailed look at the system architecture and components.">
+    <meta property="og:image" content="https://tanyagpt.my.id/img/component_diagram.png">
+    <meta property="og:url" content="https://tanyagpt.my.id/architecture.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Add Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TanyaGPT - Architecture">
+    <meta name="twitter:description" content="How TanyaGPT works behind the scenes - A detailed look at the system architecture and components.">
+    <meta name="twitter:image" content="https://tanyagpt.my.id/img/component_diagram.png">
+    
+    <link rel="icon" type="image/png" href="img/icon_resized.png">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="ca710274-7baa-4bc1-bee5-cf525c5feb39"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function getPreferredLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            if (langParam && ['id', 'en'].includes(langParam)) {
+                return langParam;
+            }
+
+            const cfDetectedLang = document.querySelector('meta[name="cf-detected-lang"]')?.content;
+            if (cfDetectedLang && ['id', 'en'].includes(cfDetectedLang)) {
+                return cfDetectedLang;
+            }
+
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('id')) {
+                return 'id';
+            }
+
+            return 'en';
+        }
+
+        function loadTranslations(lang) {
+            fetch('translations.json')
+                .then(response => response.json())
+                .then(translations => {
+                    const langData = translations[lang];
+                    
+                    document.querySelectorAll('[data-i18n]').forEach(element => {
+                        const keys = element.getAttribute('data-i18n').split('.');
+                        let value = langData;
+                        
+                        for (const key of keys) {
+                            if (value) {
+                                value = value[key];
+                            }
+                        }
+                        
+                        if (value) {
+                            if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+                                element.textContent = value;
+                            } else {
+                                element.innerHTML = value;
+                            }
+                        }
+                    });
+
+                    document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+                        const keys = element.getAttribute('data-i18n-alt').split('.');
+                        let value = langData;
+                        
+                        for (const key of keys) {
+                            if (value) {
+                                value = value[key];
+                            }
+                        }
+                        
+                        if (value) {
+                            element.alt = value;
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading translations:', error));
+        }
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                element.classList.remove('active');
+                element.style.display = 'none';
+                
+                if (element.dataset.lang === lang) {
+                    element.classList.add('active');
+                    element.style.display = 'block';
+                }
+            });
+            
+            loadTranslations(lang);
+            
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialLang = getPreferredLanguage();
+            setLanguage(initialLang);
+        });
+    </script>
+</head>
+<body>
+    <div class="language-switcher">
+        <button onclick="setLanguage('id')" class="lang-btn">🇮🇩 ID</button>
+        <button onclick="setLanguage('en')" class="lang-btn">🇬🇧 EN</button>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <img src="img/icon_resized.png" alt="TanyaGPT Logo" class="hero-logo">
+            <h1 data-i18n="architecture.title"></h1>
+            <p data-i18n="architecture.subtitle"></p>
+        </div>
+    </header>
+
+    <section class="architecture content">
+        <div class="container">
+            <div class="architecture-content">
+                <img src="img/component_diagram.png" alt="" data-i18n-alt="architecture.diagram.alt" class="architecture-diagram">
+                <div class="architecture-explanation">
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-users"></i> <span data-i18n="architecture.components.user.title"></span></h3>
+                        <p data-i18n="architecture.components.user.description"></p>
+                    </div>
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-robot"></i> <span data-i18n="architecture.components.bots.title"></span></h3>
+                        <p data-i18n="architecture.components.bots.description"></p>
+                    </div>
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-code"></i> <span data-i18n="architecture.components.baseHandler.title"></span></h3>
+                        <p data-i18n="architecture.components.baseHandler.description"></p>
+                    </div>
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-microphone"></i> <span data-i18n="architecture.components.voiceHandler.title"></span></h3>
+                        <p data-i18n="architecture.components.voiceHandler.description"></p>
+                    </div>
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-comments"></i> <span data-i18n="architecture.components.messageHandler.title"></span></h3>
+                        <p data-i18n="architecture.components.messageHandler.description"></p>
+                    </div>
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-tools"></i> <span data-i18n="architecture.components.tools.title"></span></h3>
+                        <p data-i18n="architecture.components.tools.description"></p>
+                    </div>
+                    <div class="architecture-component">
+                        <h3><i class="fas fa-database"></i> <span data-i18n="architecture.components.external.title"></span></h3>
+                        <p data-i18n="architecture.components.external.description"></p>
+                    </div>
+                </div>
+            </div>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> <span data-i18n="footer.links.back"></span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-i18n="footer.copyright"></p>
+            <div class="footer-links">
+                <a href="terms.html" data-i18n="footer.links.terms"></a>
+                <a href="privacy.html" data-i18n="footer.links.privacy"></a>
+                <a href="mailto:halo@tanyagpt.my.id" data-i18n="footer.links.contact"></a>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/tanyagpt.id" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/TanyaGPTBOT" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://wa.me/message/MDOILGVKZ5O3N1" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
