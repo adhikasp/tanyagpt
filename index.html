@@ -478,6 +478,12 @@
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <script>
         // Track hover events
         document.querySelectorAll('.feature-card, .pricing-card, .roadmap-card, .testimonial-card').forEach(card => {
@@ -505,6 +511,42 @@
             card.addEventListener('mouseleave', () => {
                 clearTimeout(hoverTimer);
             });
+        });
+
+        // Image Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.modal-close');
+        
+        // Get all demo images
+        document.querySelectorAll('.demo-image, .showcase-image').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.classList.add('show');
+                modalImg.src = this.src;
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            });
+        });
+
+        // Close modal when clicking the close button
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                modal.classList.remove('show');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
         });
     </script>
 </body>

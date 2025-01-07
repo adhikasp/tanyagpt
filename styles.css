@@ -28,12 +28,37 @@ body {
 
 /* Header/Hero styles */
 .hero, .header {
-    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%),
-                radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 60%);
-    background-blend-mode: overlay;
+    background: 
+        linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(30, 64, 175, 0.95) 100%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.1) 0%, transparent 100%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.05) 0%, transparent 50%);
+    background-blend-mode: soft-light, overlay, screen, multiply;
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
     color: white;
     padding: 80px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.1) 48%, rgba(255, 255, 255, 0.1) 52%, transparent 55%);
+    background-size: 200% 200%;
+    animation: glossy 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes glossy {
+    0% { background-position: -100% -100%; }
+    50% { background-position: 200% 200%; }
+    100% { background-position: -100% -100%; }
 }
 
 .hero h1, .header h1 {
@@ -209,6 +234,7 @@ body {
     display: block;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .demo-image:hover {
@@ -842,4 +868,70 @@ footer p {
 .section-link:hover {
     color: inherit;
     text-decoration: none;
+}
+
+/* Modal/Lightbox styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.modal-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+    }
+    
+    .modal-close {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
 }
