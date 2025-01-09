@@ -235,6 +235,24 @@
           "description": "Integrasi dengan berbagai API dan layanan untuk memperkaya fungsionalitas, termasuk Gemini, Supabase, dan OpenRouter."
         }
       }
+    },
+    "contact": {
+      "title": "Kontak",
+      "subtitle": "Hubungi kami untuk informasi lebih lanjut",
+      "address": {
+        "title": "Alamat",
+        "line1": "PVV2+F68, 9, Jl. Raya Kalibata No.60 9",
+        "line2": "Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12750"
+      },
+      "phone": {
+        "title": "Telepon",
+        "number": "0851-5618-6781",
+        "hours": "24 / 7"
+      },
+      "email": {
+        "title": "Email",
+        "response": "Respon dalam 1x24 jam"
+      }
     }
   },
   "en": {
@@ -472,6 +490,24 @@
           "title": "External Services",
           "description": "Integration with various APIs and services to enrich functionality, including Gemini, Supabase, and OpenRouter."
         }
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Get in touch with us for more information",
+      "address": {
+        "title": "Address",
+        "line1": "PVV2+F68, 9, Jl. Raya Kalibata No.60 9, RT.9/RW.4",
+        "line2": "Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12750"
+      },
+      "phone": {
+        "title": "Phone",
+        "number": "+851-5618-6781",
+        "hours": "24 / 7"
+      },
+      "email": {
+        "title": "Email",
+        "response": "Response within 24 hours"
       }
     }
   }
