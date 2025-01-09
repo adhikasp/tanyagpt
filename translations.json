@@ -137,6 +137,23 @@
           "contact": "Hubungi Kami"
         }
       },
+      "standard": {
+        "title": "Standard",
+        "price": "Rp 100.000",
+        "subtitle": "per bulan",
+        "features": {
+          "messages": "1000 pesan per bulan",
+          "basic": "Akses ke semua fitur dasar",
+          "imageAnalysis": "Analisis gambar",
+          "webSearch": "Penelusuran web",
+          "youtube": "Analisis video YouTube",
+          "priority": "Prioritas akses ke model AI terbaru"
+        },
+        "footer": {
+          "buy": "Beli Sekarang",
+          "qr": "Bayar dengan QRIS"
+        }
+      },
       "note": "Kok bisa gratis? Ini adalah exploration project dari author. Layanan produk dapat dihentikan atau dibatasi sewaktu-waktu."
     },
     "roadmap": {
@@ -391,6 +408,23 @@
         "footer": {
           "question": "Need more intensive usage?",
           "contact": "Contact Us"
+        }
+      },
+      "standard": {
+        "title": "Standard",
+        "price": "IDR 100,000",
+        "subtitle": "per month",
+        "features": {
+          "messages": "1000 messages per month",
+          "basic": "Access to all basic features",
+          "imageAnalysis": "Image analysis",
+          "webSearch": "Web search",
+          "youtube": "YouTube video analysis",
+          "priority": "Priority access to latest AI models"
+        },
+        "footer": {
+          "buy": "Buy Now",
+          "qr": "Pay with QRIS"
         }
       },
       "note": "Why is it free? This is an exploration project from the author. The service may be discontinued or limited at any time."

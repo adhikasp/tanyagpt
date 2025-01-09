@@ -34,6 +34,7 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="ca710274-7baa-4bc1-bee5-cf525c5feb39"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <script>
         function getPreferredLanguage() {
             // Check URL parameter first
@@ -356,9 +357,57 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="pricing-card"
+                    data-umami-event="hover-pricing" 
+                    data-umami-event-plan="Standard"
+                    data-umami-event="click-pricing" 
+                    data-umami-event-plan="Standard">
+                    <div class="pricing-header">
+                        <h3 data-i18n="pricing.standard.title"></h3>
+                        <div class="price" data-i18n="pricing.standard.price"></div>
+                        <p class="price-subtitle" data-i18n="pricing.standard.subtitle"></p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.standard.features.messages"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.standard.features.basic"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.standard.features.imageAnalysis"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.standard.features.webSearch"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.standard.features.youtube"></span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="pricing.standard.features.priority"></span></li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <button onclick="showPaymentModal()" class="button button-primary" data-umami-event="click-buy-standard">
+                            <i class="fas fa-qrcode"></i> <span data-i18n="pricing.standard.footer.qr"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="pricing-note">
                 <p><i class="fas fa-info-circle"></i> <span data-i18n="pricing.note"></span></p>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div class="modal" id="paymentModal">
+            <div class="modal-content payment-modal">
+                <span class="modal-close" onclick="hidePaymentModal()">&times;</span>
+                <h3>QRIS Payment</h3>
+                <div id="qr-container">
+                    <img src="img/tanyagpt-qrpayment.PNG" alt="QRIS Payment QR Code" class="payment-qr">
+                </div>
+                <p class="payment-instructions">Scan QR code above with your e-wallet app to complete payment</p>
+                <div class="payment-steps">
+                    <p>After payment is completed:</p>
+                    <ol>
+                        <li>Open your chat with TanyaGPT</li>
+                        <li>Send this message:</li>
+                        <pre class="payment-message">/admin saya sudah melakukan pembayaran dengan kode transaksi 12345</pre>
+                        <li>Wait for admin confirmation</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </section>
@@ -583,6 +632,34 @@
                 document.body.style.overflow = ''; // Restore scrolling
             }
         });
+
+        // Payment Modal functionality
+        function showPaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hidePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Close payment modal when clicking outside
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hidePaymentModal();
+            }
+        });
+
+        // Close payment modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('paymentModal').classList.contains('show')) {
+                hidePaymentModal();
+            }
+        });
     </script>
 </body>
+</html> 
 </html> 
